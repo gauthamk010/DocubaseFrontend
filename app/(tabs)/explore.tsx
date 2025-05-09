@@ -36,20 +36,17 @@ export default function Explore() {
         })();
         }, []);
 
-
         const handleSearch = async () => {
             try {
-                const response = await axios.get(`${baseURL}/book?name=${search}&genre=${search}`, {
-                    params: { name: search }
+                const response = await axios.get(`${baseURL}/book`, {
+                    params: { genre: search }
                 });
                 setResults(response.data);
-                
             } catch (error) {
                 console.error("Search failed:", error);
             }
         };
-        
-
+    
     return (
         <View style={{ flex: 1 }}>
 

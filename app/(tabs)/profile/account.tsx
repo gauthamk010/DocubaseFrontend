@@ -26,6 +26,7 @@ export default function Account() {
   
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [userImage, setUserImage] = useState('');
   
   useEffect(() => {
     if (tokenValue) {
@@ -43,6 +44,7 @@ export default function Account() {
       const response = await axios.get(`${baseURL}/user/${userId}`);
       setUserName(response.data.name);
       setUserEmail(response.data.email);
+      setUserImage(response.data.profileImage);
     } catch (err) {
       console.log('Failed to fetch user profile', err);
     }
@@ -86,7 +88,7 @@ export default function Account() {
   return (
         <View style={styles.profileContainer}>
             <Image 
-            source={require('@assets/images/profileimage.jpg')}
+            source={{uri: userImage}}
             style={styles.profileImage}
             />
             <View style={styles.profileDetails}>
